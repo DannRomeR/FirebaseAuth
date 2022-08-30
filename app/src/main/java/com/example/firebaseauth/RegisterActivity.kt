@@ -40,6 +40,7 @@ class RegisterActivity : AppCompatActivity() {
         btnRegister.setOnClickListener{
             createNewAccount()
         }
+
         database = FirebaseDatabase.getInstance()
         auth = FirebaseAuth.getInstance()
 
