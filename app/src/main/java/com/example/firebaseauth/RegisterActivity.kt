@@ -41,7 +41,6 @@ class RegisterActivity : AppCompatActivity() {
             createNewAccount()
         }
 
-
         database = FirebaseDatabase.getInstance()
         auth = FirebaseAuth.getInstance()
 
