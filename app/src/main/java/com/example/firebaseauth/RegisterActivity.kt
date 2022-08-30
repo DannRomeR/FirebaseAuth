@@ -5,6 +5,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.TextUtils
+import android.widget.Button
 import android.widget.EditText
 import android.widget.ProgressBar
 import android.widget.Toast
@@ -34,17 +35,22 @@ class RegisterActivity : AppCompatActivity() {
         txtPassword =findViewById(R.id.txtPassword)
 
         progressBar = findViewById(R.id.progressBar)
-
+        var btnRegister = findViewById<Button>(R.id.register)
+        btnRegister.setOnClickListener{
+            createNewAccount()
+        }
         database = FirebaseDatabase.getInstance()
         auth = FirebaseAuth.getInstance()
 
         dbReference = database.reference.child("User")
 
+
+
     }
 
-     fun register(view: View){
+     /*fun register(view: View){
         createNewAccount()
-    }
+    }*/
     private fun createNewAccount(){
         val name:String = txtName.text.toString()
         val lastName:String = txtLastName.text.toString()
