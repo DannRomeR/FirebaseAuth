@@ -35,7 +35,7 @@ class RegisterActivity : AppCompatActivity() {
         txtPassword =findViewById(R.id.txtPassword)
 
         progressBar = findViewById(R.id.progressBar)
-        var btnRegister = findViewById<Button>(R.id.register)
+        val btnRegister = findViewById<Button>(R.id.register)
         btnRegister.setOnClickListener{
             createNewAccount()
         }
