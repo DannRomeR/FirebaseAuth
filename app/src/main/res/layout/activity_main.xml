@@ -4,15 +4,56 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#039BE5"
     tools:context=".MainActivity">
 
-    <TextView
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="17dp"
+        android:layout_marginTop="25dp"
+        android:layout_marginEnd="14dp"
+        android:layout_marginBottom="65dp"
+        android:contentDescription="@string/firebaseimage"
+        app:layout_constraintBottom_toTopOf="@+id/btnEmailPassword"
+        app:layout_constraintEnd_toEndOf="@+id/btnEmailPassword"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/logo_built_knockout" />
+
+    <Button
+        android:id="@+id/btnEmailPassword"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
+        android:layout_marginBottom="31dp"
+        android:drawableLeft="@android:drawable/sym_action_email"
+        android:text="@string/email_password"
+        app:layout_constraintBottom_toTopOf="@+id/btnFacebook"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+
+    <Button
+        android:id="@+id/btnFacebook"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="52dp"
+        android:layout_marginBottom="40dp"
+        android:text="@string/facebook"
+        app:layout_constraintBottom_toTopOf="@+id/btnPhoneNumber"
+        app:layout_constraintEnd_toEndOf="@+id/btnEmailPassword"
+        app:layout_constraintTop_toBottomOf="@+id/btnEmailPassword" />
+
+    <Button
+        android:id="@+id/btnPhoneNumber"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="285dp"
+        android:text="@string/phone_number"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/btnFacebook" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

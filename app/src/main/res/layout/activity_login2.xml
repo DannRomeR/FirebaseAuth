@@ -4,19 +4,30 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#039BE5"
     android:orientation="vertical"
     tools:context=".LoginActivity">
+
+    <ProgressBar
+        android:id="@+id/progressBar2"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:indeterminate="true"/>
 
     <EditText
         android:id="@+id/txtUserEmail"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
+        android:autofillHints=""
         android:ems="10"
         android:hint="@string/useremail"
         android:inputType="textEmailAddress"
         android:minHeight="48dp"
-        android:autofillHints="" />
+        android:textColor="@color/white"
+        android:textColorHint="@color/white" />
 
     <EditText
         android:id="@+id/txtPasswordLogin2"
@@ -25,16 +36,17 @@
         android:layout_margin="10dp"
         android:ems="10"
         android:hint="@string/userpassword"
+        android:importantForAutofill="no"
         android:inputType="textPassword"
         android:minHeight="48dp"
-        android:importantForAutofill="no" />
+        android:textColorHint="@color/white" />
 
     <Button
-        android:onClick="loging"
+        android:id="@+id/btnLogin"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/loginuser"
-        android:layout_margin="10dp"/>
+        android:layout_margin="10dp"
+        android:text="@string/loginuser" />
 
     <TextView
         android:layout_width="match_parent"
@@ -42,7 +54,19 @@
         android:layout_margin="10dp"
         android:gravity="center"
         android:minHeight="48dp"
-        android:onClick="forgotPassword"
-        android:text="@string/forgot_password" />
+        android:id="@+id/forgot"
+        android:text="@string/forgot_password"
+        android:textColor="@color/white" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:gravity="center"
+        android:minHeight="48dp"
+        android:id="@+id/txtViewAccount"
+        android:text="@string/create_an_account"
+        android:textColor="@color/white"
+        android:textSize="18sp"/>
 
 </LinearLayout>

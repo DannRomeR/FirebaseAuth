@@ -36,16 +36,16 @@ class RegisterActivity : AppCompatActivity() {
 
         progressBar = findViewById(R.id.progressBar)
 
-        val btnRegister = findViewById<Button>(R.id.register)
-        btnRegister.setOnClickListener{
-            createNewAccount()
-        }
+
         database = FirebaseDatabase.getInstance()
         auth = FirebaseAuth.getInstance()
 
         dbReference = database.reference.child("User")
 
-
+        val btnRegister = findViewById<Button>(R.id.register)
+        btnRegister.setOnClickListener{
+            createNewAccount()
+        }
 
     }
 

@@ -18,4 +18,11 @@
     <string name="userpassword">Password</string>
     <string name="forgot_password">Forgot password?</string>
     <string name="loginuser">Login</string>
+    <string name="firebaseimage">FirebaseImage</string>
+    <string name="email_password">Email / Password</string>
+    <string name="facebook">Facebook</string>
+    <string name="phone_number">Phone Number</string>
+    <string name="FirebaseLogo">FirebaseLogo</string>
+    <string name="login_here">Login here</string>
+    <string name="create_an_account">Create an account</string>
 </resources>
