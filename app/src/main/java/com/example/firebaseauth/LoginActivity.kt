@@ -26,7 +26,8 @@ class LoginActivity : AppCompatActivity() {
 
         val btnForgot = findViewById<TextView>(R.id.forgot)
         btnForgot.setOnClickListener{
-
+            progressBar2.visibility = android.view.View.VISIBLE
+            startActivity(Intent(this,ForgotPassActivity::class.java))
         }
         val btnLogin = findViewById<TextView>(R.id.btnLogin)
         btnLogin.setOnClickListener{

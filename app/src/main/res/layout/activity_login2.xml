@@ -16,6 +16,13 @@
         android:visibility="gone"
         android:indeterminate="true"/>
 
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="309dp"
+        android:layout_height="116dp"
+        app:srcCompat="@drawable/logo_built_knockout"
+        android:contentDescription="@string/FirebaseLogoLogin" />
+
     <EditText
         android:id="@+id/txtUserEmail"
         android:layout_width="match_parent"
@@ -46,7 +53,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
-        android:text="@string/loginuser" />
+        android:text="@string/loginuser"
+        android:background="@drawable/diseno_buton"/>
 
     <TextView
         android:layout_width="match_parent"

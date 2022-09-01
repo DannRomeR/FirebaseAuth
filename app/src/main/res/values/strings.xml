@@ -25,4 +25,8 @@
     <string name="FirebaseLogo">FirebaseLogo</string>
     <string name="login_here">Login here</string>
     <string name="create_an_account">Create an account</string>
+    <string name="FirebaseLogoLogin">FirebaseLogoLogin</string>
+    <string name="FirebaseLogoForgot">FirebaseLogoForgot</string>
+    <string name="send_password">Send Password</string>
+    <string name="emailForgot">EmailForgot</string>
 </resources>
