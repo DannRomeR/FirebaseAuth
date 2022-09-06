@@ -29,4 +29,10 @@
     <string name="FirebaseLogoForgot">FirebaseLogoForgot</string>
     <string name="send_password">Send Password</string>
     <string name="emailForgot">EmailForgot</string>
+    <string name="google">Google</string>
+    <string name="facebookLogin">Facebook</string>
+    <string name="btn_phone_number">Phone Number</string>
+    <string name="logout">Logout</string>
+    <string name="provider">Provider</string>
+    <string name="email_User">Email</string>
 </resources>

@@ -30,6 +30,7 @@
         android:layout_margin="10dp"
         android:autofillHints=""
         android:ems="10"
+        android:fontFamily="casual"
         android:hint="@string/useremail"
         android:inputType="textEmailAddress"
         android:minHeight="48dp"
@@ -42,6 +43,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
         android:ems="10"
+        android:fontFamily="casual"
         android:hint="@string/userpassword"
         android:importantForAutofill="no"
         android:inputType="textPassword"
@@ -53,8 +55,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
+        android:background="@drawable/diseno_buton"
+        android:fontFamily="casual"
         android:text="@string/loginuser"
-        android:background="@drawable/diseno_buton"/>
+        android:textSize="18sp"/>
 
     <TextView
         android:layout_width="match_parent"
@@ -63,6 +67,7 @@
         android:gravity="center"
         android:minHeight="48dp"
         android:id="@+id/forgot"
+        android:fontFamily="casual"
         android:text="@string/forgot_password"
         android:textColor="@color/white" />
 
@@ -73,8 +78,49 @@
         android:gravity="center"
         android:minHeight="48dp"
         android:id="@+id/txtViewAccount"
+        android:fontFamily="casual"
         android:text="@string/create_an_account"
         android:textColor="@color/white"
+        android:textSize="18sp"/>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginBottom="10dp">
+
+        <Button
+            android:id="@+id/btnGoogle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:background="@drawable/diseno_buton"
+            android:drawableLeft="@drawable/icons8_logo_de_google_48"
+            android:fontFamily="casual"
+            android:text="@string/google"
+            android:textSize="18sp" />
+
+        <Button
+            android:id="@+id/btnFacebookLogin"
+            android:layout_width="199dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:background="@drawable/diseno_buton"
+            android:drawableLeft="@drawable/icons8_facebook_rodeado_de_c_rculo_48"
+            android:fontFamily="casual"
+            android:text="@string/facebookLogin"
+            android:textSize="18sp" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btnPhoneNumberLogin"
+        android:layout_width="388dp"
+        android:layout_height="50dp"
+        android:layout_margin="10dp"
+        android:background="@drawable/diseno_buton"
+        android:drawableLeft="@android:drawable/stat_sys_phone_call"
+        android:fontFamily="casual"
+        android:text="@string/btn_phone_number"
         android:textSize="18sp"/>
 
 </LinearLayout>

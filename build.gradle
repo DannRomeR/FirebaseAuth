@@ -19,10 +19,3 @@ task clean(type: Delete) {
     delete rootProject.buildDir
 }
 
-/*
-allprojects {
-    repositories {
-        google()  // Google's Maven repository
-        mavenCentral()  // Maven Central repository
-    }
-}*/
