@@ -1,17 +1,26 @@
 package com.example.firebaseauth
 
+import android.content.Context
 import android.content.Intent
 import android.opengl.Visibility
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AlertDialog
+import com.google.android.gms.auth.api.signin.GoogleSignIn
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount
+import com.google.android.gms.auth.api.signin.GoogleSignInClient
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions
+import com.google.android.gms.common.api.ApiException
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.GoogleAuthProvider
 import kotlinx.android.synthetic.main.activity_login2.*
 
 
 class LoginActivity : AppCompatActivity() {
 
+    private val GOOGLE_SIGN_IN = 100
     private lateinit var progressBar2: ProgressBar
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -26,8 +35,24 @@ class LoginActivity : AppCompatActivity() {
 */
         // Setup
         setup()
-
+        //session()
     }
+
+    /*override fun onStart() {
+        super.onStart()
+        loginLayout.visibility = View.VISIBLE
+    }
+
+    private fun session(){
+        val prefs = getSharedPreferences(getString(R.string.prefs_file), Context.MODE_PRIVATE)
+        val email = prefs.getString("email",null)
+        val provider = prefs.getString("email",null)
+
+        if(email != null && provider != null){
+            loginLayout.visibility = View.INVISIBLE
+            showHome(email, ProviderType.valueOf(provider))
+        }
+    }*/
 
     private fun setup() {
 
@@ -49,13 +74,27 @@ class LoginActivity : AppCompatActivity() {
         }
 
         forgot.setOnClickListener{
-           // progressBar2.visibility = android.view.View.VISIBLE
+           //progressBar2.visibility = View.VISIBLE
             startActivity(Intent(this,ForgotPassActivity::class.java))
         }
 
         txtViewAccount.setOnClickListener{
-           //progressBar2.visibility = android.view.View.VISIBLE
+           //progressBar2.visibility = View.VISIBLE
             startActivity(Intent(this,RegisterActivity::class.java))
+        }
+
+        btnGoogle.setOnClickListener {
+            //Configuration
+            val googleConf = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestIdToken(getString(R.string.default_web_client_id))
+                .requestEmail()
+                .build()
+
+            val googleClient : GoogleSignInClient = GoogleSignIn.getClient(this,googleConf)
+            googleClient.signOut()
+
+            startActivityForResult(googleClient.signInIntent, GOOGLE_SIGN_IN)
+
         }
     }
 
@@ -73,6 +112,34 @@ class LoginActivity : AppCompatActivity() {
             putExtra("provider", provider.name)
         }
         startActivity(homeIntent)
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        if(requestCode == GOOGLE_SIGN_IN){
+            val task = GoogleSignIn.getSignedInAccountFromIntent(data)
+            try {
+                val account = task.getResult(ApiException::class.java)
+
+                if(account != null){
+                    val credential = GoogleAuthProvider.getCredential(account.idToken, null)
+                    FirebaseAuth.getInstance().signInWithCredential(credential).addOnCompleteListener{
+
+                        if(it.isSuccessful){
+                            showHome(account.email ?: "", ProviderType.GOOGLE)
+                        }else{
+                            showAlert()
+                        }
+                    }
+                }
+            }
+            catch (e : ApiException){
+                showAlert()
+            }
+
+
+        }
     }
 
    /* private fun loginUser(){

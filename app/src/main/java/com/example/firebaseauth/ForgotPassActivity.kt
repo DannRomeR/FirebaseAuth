@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.TextUtils
+import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ProgressBar
@@ -32,7 +33,7 @@ class ForgotPassActivity : AppCompatActivity() {
                     .addOnCompleteListener(this){
                         task ->
                         if(task.isSuccessful){
-                            progressBar3.visibility = android.view.View.VISIBLE
+                            progressBar3.visibility = View.VISIBLE
                             startActivity(Intent(this,LoginActivity::class.java))
                         }else{
                             Toast.makeText(this,"Error to send email", Toast.LENGTH_LONG).show()

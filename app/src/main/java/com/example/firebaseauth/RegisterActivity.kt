@@ -3,6 +3,7 @@ package com.example.firebaseauth
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import com.google.firebase.auth.FirebaseAuth
@@ -58,7 +59,7 @@ class RegisterActivity : AppCompatActivity() {
                 val name:String = txtName.text.toString()
                 val lastName:String = txtLastName.text.toString()
 
-                progressBar.visibility = android.view.View.VISIBLE
+                progressBar.visibility = View.VISIBLE
                 FirebaseAuth.getInstance().createUserWithEmailAndPassword(txtEmail.text.toString(),
                     txtPassword.text.toString()).addOnCompleteListener(){
 
@@ -88,7 +89,6 @@ class RegisterActivity : AppCompatActivity() {
         val dialog: AlertDialog = builder.create()
         dialog.show()
     }
-
 
      /*fun register(view: View){
         createNewAccount()
