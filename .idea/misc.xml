@@ -11,6 +11,8 @@
         <entry key="app/src/main/res/layout/activity_login2.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.335" />
         <entry key="app/src/main/res/layout/activity_menu.xml" value="0.246875" />
+        <entry key="app/src/main/res/layout/activity_otp.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/activity_phone.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_register.xml" value="0.25" />
       </map>
     </option>

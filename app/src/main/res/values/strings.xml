@@ -36,4 +36,10 @@
     <string name="provider">Provider</string>
     <string name="email_User">Email</string>
     <string name="prefs_file">com.example.firebaseauth.PREFERENCE_FILE_KEY</string>
+    <string name="enter_phone_number">Enter Phone number</string>
+    <string name="send_otp">Send OTP</string>
+    <string name="enter_otp">Enter OTP</string>
+    <string name="txt_enter_otp">Enter OTP</string>
+    <string name="login">Login</string>
+    <string name="didn_t_get_otp_resend">Didn´t get OTP? Resend</string>
 </resources>

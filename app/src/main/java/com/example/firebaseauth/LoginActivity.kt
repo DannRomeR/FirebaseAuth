@@ -96,6 +96,9 @@ class LoginActivity : AppCompatActivity() {
             startActivityForResult(googleClient.signInIntent, GOOGLE_SIGN_IN)
 
         }
+        btnPhoneNumberLogin.setOnClickListener {
+            startActivity(Intent(this,PhoneActivity::class.java))
+        }
     }
 
     private fun showAlert(){

@@ -12,7 +12,8 @@ import kotlinx.android.synthetic.main.activity_menu.*
 
 enum class ProviderType{
     EMAILPASS,
-    GOOGLE
+    GOOGLE,
+    PHONENUMBER
 }
 
 class MenuActivity : AppCompatActivity() {
