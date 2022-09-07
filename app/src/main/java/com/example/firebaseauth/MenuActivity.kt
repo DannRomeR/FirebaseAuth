@@ -7,12 +7,14 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.ProgressBar
 import android.widget.TextView
+import com.facebook.login.LoginManager
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_menu.*
 
 enum class ProviderType{
     EMAILPASS,
-    GOOGLE
+    GOOGLE,
+    FACEBOOK
 }
 
 class MenuActivity : AppCompatActivity() {
@@ -49,6 +51,10 @@ class MenuActivity : AppCompatActivity() {
            /* val prefs = getSharedPreferences(getString(R.string.prefs_file),Context.MODE_PRIVATE).edit()
             prefs.clear()
             prefs.apply()*/
+
+            if(provider == ProviderType.FACEBOOK.name){
+                LoginManager.getInstance().logOut()
+            }
 
             FirebaseAuth.getInstance().signOut()
             onBackPressed()

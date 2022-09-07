@@ -8,11 +8,17 @@ import android.os.Bundle
 import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AlertDialog
+import com.facebook.CallbackManager
+import com.facebook.FacebookCallback
+import com.facebook.FacebookException
+import com.facebook.login.LoginManager
+import com.facebook.login.LoginResult
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
+import com.google.firebase.auth.FacebookAuthProvider
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
 import kotlinx.android.synthetic.main.activity_login2.*
@@ -21,6 +27,7 @@ import kotlinx.android.synthetic.main.activity_login2.*
 class LoginActivity : AppCompatActivity() {
 
     private val GOOGLE_SIGN_IN = 100
+    private val callbackManager = CallbackManager.Factory.create()
     private lateinit var progressBar2: ProgressBar
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -96,6 +103,35 @@ class LoginActivity : AppCompatActivity() {
             startActivityForResult(googleClient.signInIntent, GOOGLE_SIGN_IN)
 
         }
+        btnFacebookLogin.setOnClickListener {
+
+            LoginManager.getInstance().logInWithReadPermissions(this, listOf("email"))
+
+            LoginManager.getInstance().registerCallback(callbackManager,
+            object : FacebookCallback<LoginResult>{
+                override fun onSuccess(result: LoginResult?) {
+                    result?.let {
+                        val token = it.accessToken
+                        val credential = FacebookAuthProvider.getCredential(token.token)
+                        FirebaseAuth.getInstance().signInWithCredential(credential).addOnCompleteListener{
+                            if(it.isSuccessful){
+                                showHome(it.result?.user?.email ?: "", ProviderType.FACEBOOK)
+                            }else{
+                                showAlert()
+                            }
+                        }
+                    }
+                }
+
+                override fun onCancel() {
+
+                }
+
+                override fun onError(error: FacebookException?) {
+
+                }
+            })
+        }
     }
 
     private fun showAlert(){
@@ -115,6 +151,8 @@ class LoginActivity : AppCompatActivity() {
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        callbackManager.onActivityResult(requestCode,resultCode,data)
+
         super.onActivityResult(requestCode, resultCode, data)
 
         if(requestCode == GOOGLE_SIGN_IN){
@@ -137,8 +175,6 @@ class LoginActivity : AppCompatActivity() {
             catch (e : ApiException){
                 showAlert()
             }
-
-
         }
     }
 
