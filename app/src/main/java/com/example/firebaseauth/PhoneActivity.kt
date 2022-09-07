@@ -26,7 +26,7 @@ class PhoneActivity : AppCompatActivity() {
     //if code sending failed, will used to resend
     private var forceResendingToken: PhoneAuthProvider.ForceResendingToken? = null
     private lateinit var mCallBacks: PhoneAuthProvider.OnVerificationStateChangedCallbacks
-    private var mVerificationId: String? = null
+    private var mVerificationId: String? = ""
     private lateinit var firebaseAuth: FirebaseAuth
 
     private val TAG = "MAIN_TAG"
@@ -38,8 +38,8 @@ class PhoneActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_phone)
 
-        phoneLl.visibility = android.view.View.VISIBLE
-        codeLl.visibility = android.view.View.GONE
+//        phoneLl.visibility = android.view.View.VISIBLE
+//        codeLl.visibility = android.view.View.GONE
 
         setup()
     }
@@ -65,18 +65,20 @@ class PhoneActivity : AppCompatActivity() {
                 Toast.makeText(this@PhoneActivity,"${e.message}",Toast.LENGTH_SHORT).show()
             }
 
-            override fun onCodeSent(verificationId: String, token: PhoneAuthProvider.ForceResendingToken) {
+            override fun onCodeSent(
+                verificationId: String,
+                token: PhoneAuthProvider.ForceResendingToken) {
                Log.d(TAG,"onCodeSent: $verificationId")
                 mVerificationId = verificationId
                 forceResendingToken = token
                 progressDialog.dismiss()
 
                // Log.d(TAG,"onCodeSent: $token")
+//                codeLl.visibility = android.view.View.VISIBLE
+//                phoneLl.visibility = android.view.View.GONE
 
-                phoneLl.visibility = android.view.View.GONE
-                codeLl.visibility = android.view.View.VISIBLE
                 Toast.makeText(this@PhoneActivity,"Verification code sent...", Toast.LENGTH_SHORT).show()
-                txtEnterOTP.text = "Please type the verification code we sent to ${txtPhoneNumber.text.toString().trim()}"
+                //txtEnterOTP.text = "Please type the verification code we sent to ${txtPhoneNumber.text.toString().trim()}"
             }
         }
         btnSendOTP.setOnClickListener {
