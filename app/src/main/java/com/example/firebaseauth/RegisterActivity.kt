@@ -18,8 +18,8 @@ class RegisterActivity : AppCompatActivity() {
     private lateinit var txtEmail:EditText
     private lateinit var txtPassword:EditText
     private lateinit var progressBar:ProgressBar
-    private lateinit var database:FirebaseDatabase
-    private lateinit var auth:FirebaseAuth*/
+    private lateinit var database:FirebaseDatabase*/
+    private lateinit var auth:FirebaseAuth
     private lateinit var dbReference:DatabaseReference
 
 
@@ -66,16 +66,19 @@ class RegisterActivity : AppCompatActivity() {
                     if (it.isSuccessful){
 
                         //Add to database
-                        /*val user:FirebaseUser? = FirebaseAuth.getInstance().currentUser
+                        val user:FirebaseUser? = FirebaseAuth.getInstance().currentUser
                         verifyEmail(user)
                         val userBD = dbReference.child(user?.uid.toString())
                         userBD.child("Name").setValue(name)
-                        userBD.child("lastName").setValue(lastName)*/
+                        userBD.child("lastName").setValue(lastName)
 
                         //Send data
                         startActivity(Intent(this,LoginActivity::class.java))
+
+                        Toast.makeText(this,"The user has been register successful", Toast.LENGTH_LONG).show()
                     }else{
-                        showAlert()
+                        Toast.makeText(this,"The user is already register", Toast.LENGTH_LONG).show()
+                        //showAlert()
                     }
                 }
             }

@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.ProgressBar
 import android.widget.TextView
+import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_menu.*
 
@@ -54,9 +55,11 @@ class MenuActivity : AppCompatActivity() {
             if(provider == ProviderType.PHONENUMBER.name){
                 FirebaseAuth.getInstance().signOut()
                 startActivity(Intent(this,LoginActivity::class.java))
+                Toast.makeText(this,"Close User Session", Toast.LENGTH_LONG).show()
             }else{
                 FirebaseAuth.getInstance().signOut()
                 onBackPressed()
+                Toast.makeText(this,"Close User Session", Toast.LENGTH_LONG).show()
             }
 
         }
