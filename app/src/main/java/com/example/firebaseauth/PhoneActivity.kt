@@ -6,6 +6,7 @@ import android.opengl.Visibility
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import com.example.firebaseauth.databinding.ActivityPhoneBinding
@@ -38,8 +39,8 @@ class PhoneActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_phone)
 
-//        phoneLl.visibility = android.view.View.VISIBLE
-//        codeLl.visibility = android.view.View.GONE
+        phoneLl.visibility = android.view.View.VISIBLE
+        codeLl.visibility = android.view.View.GONE
 
         setup()
     }
@@ -74,11 +75,11 @@ class PhoneActivity : AppCompatActivity() {
                 progressDialog.dismiss()
 
                // Log.d(TAG,"onCodeSent: $token")
-//                codeLl.visibility = android.view.View.VISIBLE
-//                phoneLl.visibility = android.view.View.GONE
+                codeLl.visibility = android.view.View.VISIBLE
+                phoneLl.visibility = android.view.View.GONE
 
                 Toast.makeText(this@PhoneActivity,"Verification code sent...", Toast.LENGTH_SHORT).show()
-                //txtEnterOTP.text = "Please type the verification code we sent to ${txtPhoneNumber.text.toString().trim()}"
+                txtEnterOTP.text = "Please type the verification code we sent to ${txtPhoneNumber.text.toString().trim()}"
             }
         }
         btnSendOTP.setOnClickListener {

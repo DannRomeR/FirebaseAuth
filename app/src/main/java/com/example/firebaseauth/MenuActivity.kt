@@ -51,8 +51,13 @@ class MenuActivity : AppCompatActivity() {
             prefs.clear()
             prefs.apply()*/
 
-            FirebaseAuth.getInstance().signOut()
-            onBackPressed()
+            if(provider == ProviderType.PHONENUMBER.name){
+                FirebaseAuth.getInstance().signOut()
+                startActivity(Intent(this,LoginActivity::class.java))
+            }else{
+                FirebaseAuth.getInstance().signOut()
+                onBackPressed()
+            }
 
         }
     }

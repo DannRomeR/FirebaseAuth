@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/phoneLl"
+
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#039BE5"
@@ -15,41 +15,45 @@
         android:layout_height="116dp"
         app:srcCompat="@drawable/logo_built_knockout" />
 
-    <EditText
-        android:id="@+id/txtPhoneNumber"
+    <LinearLayout
+        android:id="@+id/phoneLl"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:autofillHints=""
-        android:ems="10"
-        android:fontFamily="casual"
-        android:hint="@string/enter_phone_number"
-        android:inputType="phone"
-        android:minHeight="48dp"
-        android:textColor="@color/white"
-        android:textColorHint="@color/white" />
+        android:layout_marginBottom="10dp"
+        android:orientation="vertical">
 
-    <Button
-        android:id="@+id/btnSendOTP"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:background="@drawable/diseno_buton"
-        android:fontFamily="casual"
-        android:text="@string/send_otp"
-        android:textSize="18sp" />
+        <EditText
+            android:id="@+id/txtPhoneNumber"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:autofillHints=""
+            android:ems="10"
+            android:fontFamily="casual"
+            android:hint="@string/enter_phone_number"
+            android:inputType="phone"
+            android:minHeight="48dp"
+            android:textColor="@color/white"
+            android:textColorHint="@color/white" />
+
+        <Button
+            android:id="@+id/btnSendOTP"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:background="@drawable/diseno_buton"
+            android:fontFamily="casual"
+            android:text="@string/send_otp"
+            android:textSize="18sp" />
+    </LinearLayout>
+
+
 
     <LinearLayout
         android:id="@+id/codeLl"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
-
-        <ImageView
-            android:id="@+id/imageView6"
-            android:layout_width="309dp"
-            android:layout_height="116dp"
-            app:srcCompat="@drawable/logo_built_knockout" />
 
         <TextView
             android:id="@+id/txtEnterOTP"
@@ -96,7 +100,6 @@
             android:minHeight="48dp"
             android:text="@string/didn_t_get_otp_resend"
             android:textColor="@color/white" />
-
 
     </LinearLayout>
 </LinearLayout>
