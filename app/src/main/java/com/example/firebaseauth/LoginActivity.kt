@@ -27,32 +27,10 @@ class LoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login2)
 
-        /*txtUserEmail = findViewById(R.id.txtUserEmail)
-        txtPasswordLogin2 =findViewById(R.id.txtPasswordLogin2)
-        progressBar2 = findViewById(R.id.progressBar2)
-
-        auth = FirebaseAuth.getInstance()
-*/
         // Setup
         setup()
         //session()
     }
-
-    /*override fun onStart() {
-        super.onStart()
-        loginLayout.visibility = View.VISIBLE
-    }
-
-    private fun session(){
-        val prefs = getSharedPreferences(getString(R.string.prefs_file), Context.MODE_PRIVATE)
-        val email = prefs.getString("email",null)
-        val provider = prefs.getString("email",null)
-
-        if(email != null && provider != null){
-            loginLayout.visibility = View.INVISIBLE
-            showHome(email, ProviderType.valueOf(provider))
-        }
-    }*/
 
     private fun setup() {
 
@@ -74,12 +52,10 @@ class LoginActivity : AppCompatActivity() {
         }
 
         forgot.setOnClickListener{
-           //progressBar2.visibility = View.VISIBLE
             startActivity(Intent(this,ForgotPassActivity::class.java))
         }
 
         txtViewAccount.setOnClickListener{
-           //progressBar2.visibility = View.VISIBLE
             startActivity(Intent(this,RegisterActivity::class.java))
         }
 
@@ -140,32 +116,7 @@ class LoginActivity : AppCompatActivity() {
             catch (e : ApiException){
                 showAlert()
             }
-
-
         }
     }
-
-   /* private fun loginUser(){
-        val user:String = txtUserEmail.text.toString()
-        val password:String = txtPasswordLogin2.text.toString()
-
-        if(!TextUtils.isEmpty(user) &&
-            !TextUtils.isEmpty(password)){
-            progressBar2.visibility = android.view.View.VISIBLE
-
-            auth.signInWithEmailAndPassword(user,password)
-                .addOnCompleteListener(this){
-                    task->
-                    if(task.isSuccessful){
-                        action()
-                    }else{
-                        Toast.makeText(this,"The email and password are incorrect", Toast.LENGTH_LONG).show()
-                    }
-                }
-        }
-    }
-private fun action(){
-    startActivity(Intent(this,MenuActivity::class.java))
-}*/
 
 }

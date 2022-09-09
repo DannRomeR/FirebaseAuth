@@ -9,6 +9,7 @@ import androidx.appcompat.app.AlertDialog
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
 import kotlinx.android.synthetic.main.activity_register.*
 
 class RegisterActivity : AppCompatActivity() {
@@ -17,8 +18,8 @@ class RegisterActivity : AppCompatActivity() {
     private lateinit var txtLastName:EditText
     private lateinit var txtEmail:EditText
     private lateinit var txtPassword:EditText
-    private lateinit var progressBar:ProgressBar
-    private lateinit var database:FirebaseDatabase*/
+    private lateinit var progressBar:ProgressBar*/
+    private lateinit var database:FirebaseDatabase
     private lateinit var auth:FirebaseAuth
     private lateinit var dbReference:DatabaseReference
 
@@ -43,6 +44,9 @@ class RegisterActivity : AppCompatActivity() {
         btnRegister.setOnClickListener{
             createNewAccount()
         }*/
+
+        database = FirebaseDatabase.getInstance()
+        dbReference = database.reference.child("User")
 
         setup()
     }
@@ -93,39 +97,6 @@ class RegisterActivity : AppCompatActivity() {
         dialog.show()
     }
 
-     /*fun register(view: View){
-        createNewAccount()
-    }*/
-  /*  private fun createNewAccount(){
-        val name:String = txtName.text.toString()
-        val lastName:String = txtLastName.text.toString()
-        val email:String = txtEmail.text.toString()
-        val password:String = txtPassword.text.toString()
-
-        if(!TextUtils.isEmpty(name) &&
-            !TextUtils.isEmpty(lastName) &&
-            !TextUtils.isEmpty(email) &&
-            !TextUtils.isEmpty(password)){
-            progressBar.visibility = android.view.View.VISIBLE
-
-            auth.createUserWithEmailAndPassword(email,password)
-                .addOnCompleteListener(this){
-                    task->
-                    if(task.isComplete){
-                        val user:FirebaseUser? = auth.currentUser
-                        verifyEmail(user)
-                        val userBD = dbReference.child(user?.uid.toString())
-                        userBD.child("Name").setValue(name)
-                        userBD.child("lastName").setValue(lastName)
-                        action()
-                    }
-                }
-        }
-    }
-
-    private fun action(){
-        startActivity(Intent(this,LoginActivity::class.java))
-    }*/
 
     private fun verifyEmail(user:FirebaseUser?){
         user?.sendEmailVerification()

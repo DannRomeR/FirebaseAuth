@@ -27,6 +27,28 @@
         android:contentDescription="@string/FirebaseLogoLogin"
         app:srcCompat="@drawable/logo_built_knockout" />
 
+
+    <LinearLayout
+        android:id="@+id/LinearNames"
+        android:layout_width="match_parent"
+        android:layout_height="75dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/txtNameFromDB"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="32dp"
+            android:fontFamily="casual"
+            android:text="@string/name_Menu"
+            android:textColor="@color/white"
+            android:textSize="18sp" />
+
+    </LinearLayout>
+
+
+
     <TextView
         android:id="@+id/emailTextView"
         android:layout_width="wrap_content"

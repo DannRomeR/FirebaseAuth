@@ -9,7 +9,13 @@ import android.widget.ProgressBar
 import android.widget.TextView
 import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
+import kotlinx.android.synthetic.main.activity_login2.*
 import kotlinx.android.synthetic.main.activity_menu.*
+import kotlinx.android.synthetic.main.activity_phone.*
 
 enum class ProviderType{
     EMAILPASS,
@@ -19,18 +25,27 @@ enum class ProviderType{
 
 class MenuActivity : AppCompatActivity() {
 
-    private lateinit var progressBar4: ProgressBar
-    private lateinit var auth: FirebaseAuth
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_menu)
 
         //Setup
-
+        LinearNames.visibility = android.view.View.GONE
         val bundle :Bundle? = intent.extras
         val email :String? = bundle?.getString("email")
         val provider :String? = bundle?.getString("provider")
+
+        if(provider == ProviderType.EMAILPASS.name){
+            LinearNames.visibility = android.view.View.VISIBLE
+            val user = FirebaseAuth.getInstance().currentUser
+            user?.let {
+                val name = user.displayName
+                txtNameFromDB.text = name.toString()
+            }
+
+            checkIfEmailVerified(user)
+        }
+
         setup(email?:"",provider?:"")
 
         //Save data
@@ -62,6 +77,19 @@ class MenuActivity : AppCompatActivity() {
                 Toast.makeText(this,"Close User Session", Toast.LENGTH_LONG).show()
             }
 
+        }
+    }
+
+    private fun checkIfEmailVerified(user : FirebaseUser?){
+        if (user != null) {
+            if (user.isEmailVerified) {
+                Toast.makeText(this,"Successfully logged in", Toast.LENGTH_LONG).show()
+            }  else {
+                FirebaseAuth.getInstance().signOut() //restart this activity
+                startActivity(Intent(this,LoginActivity::class.java))
+                Toast.makeText(this,"The user is not verified", Toast.LENGTH_LONG).show()
+
+            }
         }
     }
 }

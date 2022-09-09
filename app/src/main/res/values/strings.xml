@@ -42,4 +42,6 @@
     <string name="txt_enter_otp">Enter OTP</string>
     <string name="login">Login</string>
     <string name="didn_t_get_otp_resend">Didn´t get OTP? Resend</string>
+    <string name="name_Menu">name_Menu</string>
+    <string name="Lastname_Menu">Lastname_Menu</string>
 </resources>
