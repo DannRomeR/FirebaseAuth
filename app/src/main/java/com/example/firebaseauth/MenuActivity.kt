@@ -1,21 +1,18 @@
 package com.example.firebaseauth
 
-import android.content.Context
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Button
-import android.widget.ProgressBar
-import android.widget.TextView
+import android.util.Log
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
-import com.google.firebase.auth.ktx.auth
-import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
-import kotlinx.android.synthetic.main.activity_login2.*
+import com.google.firebase.database.ValueEventListener
 import kotlinx.android.synthetic.main.activity_menu.*
-import kotlinx.android.synthetic.main.activity_phone.*
+
 
 enum class ProviderType{
     EMAILPASS,
@@ -38,10 +35,37 @@ class MenuActivity : AppCompatActivity() {
         if(provider == ProviderType.EMAILPASS.name){
             LinearNames.visibility = android.view.View.VISIBLE
             val user = FirebaseAuth.getInstance().currentUser
-            user?.let {
+            val reference = FirebaseDatabase.getInstance().reference.child("User")
+
+            /*reference.addValueEventListener(object : ValueEventListener {
+                override fun onDataChange(dataSnapshot: DataSnapshot) {
+                    for(snapshot in dataSnapshot.children){
+                        val username =
+                            snapshot.key
+                        txtNameFromDB.text = username.toString()
+                    }
+                }
+                override fun onCancelled(databaseError: DatabaseError) {
+                    txtNameFromDB.text = "Error"
+                }
+            })*/
+            val rootRef = FirebaseDatabase.getInstance().reference
+            val uid = FirebaseAuth.getInstance().currentUser!!.uid
+            val uidRef = rootRef.child("User").child(uid)
+            uidRef.get().addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    val snapshot = task.result
+                    val username = snapshot.child("Name").getValue(String::class.java)
+                    txtNameFromDB.text = username
+                } else {
+                    Log.d("TAG", task.exception!!.message!!) //Don't ignore potential errors!
+                }
+            }
+
+            /*user?.let {
                 val name = user.displayName
                 txtNameFromDB.text = name.toString()
-            }
+            }*/
 
             checkIfEmailVerified(user)
         }
